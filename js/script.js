@@ -108,8 +108,22 @@ var game = function(user,kompchoice) {
 
 
 	
+var gameButtons = document.querySelectorAll('.player-move');
 
 
+for(var i = 0; i < gameButtons.length; i++){
+		gameButtons[i].addEventListener('click', function(){
+			var choice = event.target.getAttribute("data-move");
+			console.log(choice);
+			game((userchoice(choice)),komputer());
+			roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
+			results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
+
+		});
+
+	}
+
+/*
 button1.addEventListener('click', function(){
 	game((userchoice('stone')),komputer());
 	roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
@@ -127,7 +141,7 @@ button3.addEventListener('click', function(){
 	roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
 	results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
 })
-
+ */
 
 
 
