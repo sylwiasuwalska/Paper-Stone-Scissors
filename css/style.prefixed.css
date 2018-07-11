@@ -1,17 +1,7 @@
-body {
-  margin: 0;
-}
+body { margin: 0; }
 
-.container {
-  text-align: center;
-  margin: 0 auto;
-}
+.container { text-align: center; }
 
-.result {
-  margin: 40px;
-}
+.result { margin: 40px; }
 
-.buttons {
-  margin: 40px;
-}
-/*# sourceMappingURL=style.prefixed.css.map */
+.buttons { margin: 40px; }

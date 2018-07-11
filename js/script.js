@@ -113,9 +113,8 @@ var gameButtons = document.querySelectorAll('.player-move');
 
 for(var i = 0; i < gameButtons.length; i++){
 		gameButtons[i].addEventListener('click', function(){
-			var choice = event.target.getAttribute("data-move");
-			console.log(choice);
-			game((userchoice(choice)),komputer());
+			var choiceUser = event.target.getAttribute("data-move");
+			game((userchoice(choiceUser)),komputer());
 			roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
 			results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
 
