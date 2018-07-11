@@ -3,12 +3,15 @@
 
 var output = document.getElementById("buttons");
 var results = document.getElementById("result");
-var choice;
-var user;
-var kompresult = 0;
-var userresult = 0;
-var userround = 0;
-var round = 0;
+
+
+var params = {
+	choice: 0,
+	kompresult: 0,
+	userresult: 0,
+	userround: 0,
+	round: 0,
+}
 
 output.innerHTML =
   "Play with me! Click the button!" +
@@ -31,9 +34,53 @@ var komputer = function() {
 	return kompchoice;
 } 
 
+// obsluga modali, funkcje
+	//otwieranie modala
+	var showModal = function(score){
+
+		document.querySelector('.overlay').classList.add('show');
+		console.log(score);
+		document.querySelector(score).classList.add('show');
+	};
+
+	var hideModal = function(event){
+	event.preventDefault();
+
+	document.querySelector('#modal-overlay').classList.remove('show');
+
+	var modalsToClose = document.querySelectorAll('.modal');
+
+	for(var i = 0; i < modalsToClose.length; i++){
+	modalsToClose[i].classList.remove('show');
+	};
+
+	};
+
+	var closeButtons = document.querySelectorAll('.modal .close');
+	console.log(closeButtons);
+	for(var i = 0; i < closeButtons.length; i++){
+		closeButtons[i].addEventListener('click', hideModal);
+	
+	};
+	
+	
+	document.querySelector('#modal-overlay').addEventListener('click', hideModal);
+	
+	
+	var modals = document.querySelectorAll('.modal');
+	
+	for(var i = 0; i < modals.length; i++){
+		modals[i].addEventListener('click', function(event){
+			event.stopPropagation();
+		});
+	};
 
 
 
+
+
+
+// gra wlasciwa
 var button1 = document.getElementById("stone");
 var button2 = document.getElementById("paper");
 var button3 = document.getElementById("scissors");
@@ -46,27 +93,22 @@ var newGameButton = document.getElementById("btnNewGame");
 var newGame = document.getElementById("newGame");
 
 newGameButton.addEventListener('click', function(){
-	round = 0;
-	userround = window.prompt("How many rounds do you want to play? :-)");
+	params.round = 0;
+	params.userround = window.prompt("How many rounds do you want to play? :-)");
 
-	if (userround == null || userround == "" || isNaN(userround)|| (userround < 1) ){
+	if (params.userround == null || params.userround == "" || isNaN(params.userround)|| (params.userround < 1) ){
 		newGame.insertAdjacentHTML ('afterend',  '<br><br>Hey, dont you want to play? Give me number!');
 	} else if 
-		(userround > 0) {
+		(params.userround > 0) {
 		newGameButton.disabled = true;
 		button1.disabled = false;
 		button2.disabled = false;
 		button3.disabled = false;
-		roundLeft.innerHTML = '<br><br>Rounds to play: ' + (userround - round);
+		roundLeft.innerHTML = '<br><br>Rounds to play: ' + (params.userround - params.round);
 	}
 })
 
 
-// wybor uzytkownika
-var userchoice = function(choice) {
-	user = choice;
-	return user;
-}
 
 //porownanie
 var roundLeft = document.getElementById("roundLeft");
@@ -76,33 +118,38 @@ var game = function(user,kompchoice) {
 	var kompchoice = komputer();
 
 	if (user == kompchoice) {
-		round++;
+		params.round++;
 		output.insertAdjacentHTML('afterend', '<br><br>'+'Computer chose ' + kompchoice + '. You also chose ' + user + '. Draw!');
 	}
 	else if ((user == "stone") && (kompchoice == "scissors") || ((user == "paper") && (kompchoice == "stone")) || ((user == "scissors") && (kompchoice == "paper"))) {
-		userresult++;
-		round++;
+		params.userresult++;
+		params.round++;
 		output.insertAdjacentHTML('afterend', '<br><br>'+'Computer chose ' + kompchoice + '. You chose ' + user + '. Congratulations! You won!');
 	}
 	else if 
 		((kompchoice == "stone") && (user == "scissors") || ((kompchoice == "paper") && (user == "stone")) || ((kompchoice == "scissors") && (user == "paper"))) {
-		kompresult++;
-		round++;
+		params.kompresult++;
+		params.round++;
 		output.insertAdjacentHTML('afterend', '<br><br>'+'Computer chose ' + kompchoice + '. You chose ' + user + '. It is sad, but you lost.');
 	}
 
-	if (userround == round) {
+	if (params.userround == params.round) {
 		button1.disabled = true;
 		button2.disabled = true;
 		button3.disabled = true;
 
 		newGameButton.disabled = false;
 
-		if (kompresult > userresult) {
-		roundLeft.insertAdjacentHTML('afterend', '<br><br>' + 'Computer won this game. Start again! ' + '<br><br>');
-		} else if (userresult > kompresult) {
-		roundLeft.insertAdjacentHTML('afterend', '<br><br>'+'You won this game! Start again!' + '<br><br>');
-		}
+		if (params.kompresult < params.userresult) {
+			showModal('#modal-won');
+		//roundLeft.insertAdjacentHTML('afterend', '<br><br>' + 'Computer won this game. Start again! ' + '<br><br>');
+		} else if (params.userresult < params.kompresult) {
+			showModal('#modal-lost');
+		//roundLeft.insertAdjacentHTML('afterend', '<br><br>'+'You won this game! Start again!' + '<br><br>');
+		} else if (params.userresult == params.kompresult) {
+			showModal('#modal-draw');
+		//roundLeft.insertAdjacentHTML('afterend', '<br><br>'+'You won this game! Start again!' + '<br><br>');
+		} 
 	}
 }
 
@@ -114,33 +161,13 @@ var gameButtons = document.querySelectorAll('.player-move');
 for(var i = 0; i < gameButtons.length; i++){
 		gameButtons[i].addEventListener('click', function(){
 			var choiceUser = event.target.getAttribute("data-move");
-			game((userchoice(choiceUser)),komputer());
-			roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
-			results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
+			game(choiceUser,komputer());
+			roundLeft.innerHTML = '<br><br>Rounds left: ' + (params.userround - params.round);
+			results.innerHTML = "Scores" + "<br><br>" +"Computer: " + params.kompresult + " : " + "Player: " + params.userresult + "<br><br>"
 
 		});
 
 	}
-
-/*
-button1.addEventListener('click', function(){
-	game((userchoice('stone')),komputer());
-	roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
-	results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
-})
-
-button2.addEventListener('click', function(){
-	game((userchoice('paper')),komputer());
-	roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
-	results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
-})
-
-button3.addEventListener('click', function(){
-	game((userchoice('scissors')),komputer());
-	roundLeft.innerHTML = '<br><br>Rounds left: ' + (userround - round);
-	results.innerHTML = "Scores" + "<br><br>" +"Computer: " + kompresult + " : " + "Player: " + userresult + "<br><br>"
-})
- */
 
 
 

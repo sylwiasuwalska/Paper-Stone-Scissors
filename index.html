@@ -32,6 +32,30 @@
                 <button id="scissors" class="btn btn-primary btn-lg player-move" data-move="scissors">Scissors</button>
             </div>
         </section>
+
+        <div class="overlay" id="modal-overlay">
+            <div class="modal" id="modal-won">
+                <a href="#" class="close">x</a>
+                <header>You won!</header>
+                <div class="content">
+                    <p>Congratulations! You won!</p>
+                </div>
+            </div>
+            <div class="modal" id="modal-lost">
+                <a href="#" class="close">x</a>
+                <header>You lost.</header>
+                <div class="content">
+                    <p>It is sad, but you lost. Try again!</p>
+                </div>
+            </div>
+            <div class="modal" id="modal-draw">
+                <a href="#" class="close">x</a>
+                <header>It's draw!</header>
+                <div class="content">
+                    <p>Try again!</p>
+                </div>
+            </div>
+        </div>
     </div>
     <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
     <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
