@@ -11,7 +11,7 @@ var params = {
 	userresult: 0,
 	userround: 0,
 	round: 0,
-	progres: [],
+	progress: [],
 }
 
 output.innerHTML =
@@ -136,6 +136,24 @@ var game = function(user,kompchoice) {
 		output.insertAdjacentHTML('afterend', '<br><br>'+'Computer chose ' + kompchoice + '. You chose ' + user + '. It is sad, but you lost.');
 	}
 
+	//wpisywanie wynikow do tabeli
+
+	function resultsToTable() {
+	    var table = document.getElementById("#tableResult");
+	    
+	    var row = table.insertRow(params.round);
+	    var actRoundCell = row.insertCell(0);
+	    var PlayerMoveCell = row.insertCell(1);
+	    var ComputerMoveCell = row.insertCell(2);
+	   	var finalResultCell = row.insertCell(3);
+	    console.log(params.round);
+	   
+	    actRoundCell.insertAdjacentHTML('beforeend',params.round);
+	    PlayerMoveCell.insertAdjacentHTML('beforeend',user);
+	    ComputerMoveCell.insertAdjacentHTML('beforeend',kompchoice);
+	    finalResultCell.insertAdjacentHTML('beforeend', params.userresult + ' - ' + params.kompresult);
+	    }
+
 	if (params.userround == params.round) {
 		button1.disabled = true;
 		button2.disabled = true;
@@ -145,16 +163,31 @@ var game = function(user,kompchoice) {
 
 		if (params.kompresult < params.userresult) {
 			showModal('#modal-won');
-		//roundLeft.insertAdjacentHTML('afterend', '<br><br>' + 'Computer won this game. Start again! ' + '<br><br>');
+			resultsToTable();
 		} else if (params.userresult < params.kompresult) {
 			showModal('#modal-lost');
-		//roundLeft.insertAdjacentHTML('afterend', '<br><br>'+'You won this game! Start again!' + '<br><br>');
+			resultsToTable();
 		} else if (params.userresult == params.kompresult) {
 			showModal('#modal-draw');
-		//roundLeft.insertAdjacentHTML('afterend', '<br><br>'+'You won this game! Start again!' + '<br><br>');
+			resultsToTable();
 		} 
 	}
+
+	    params.progress.push({
+        actRound: params.round,
+        PlayerMove: user,
+        ComputerMove: kompchoice,
+        finalResult: params.userresult + ' - ' + params.kompresult,
+
+    });
+	    
+
+	    
+	    
+
+	    
 }
+
 
 
 	
@@ -173,4 +206,9 @@ for(var i = 0; i < gameButtons.length; i++){
 	}
 
 
+//w tym momencie sytuacja taka, ze mamy trzy modale i trzy tabele ale ze wzgledu na getElementById
+// ktore bierze pierwszy element pasujacy to wypisuje nam wyniki tylko w pierwszej tabeli zamiast we wszystkich.
+
+//Trzeba albo: zrobic jeden modal ze zmieniajacym sie tekstem w zaleznosci od wyniku.
+//albo petle w ktorej bedziemy wypisywac wyniki niezaleznie od ilosci tabel
 

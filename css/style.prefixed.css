@@ -59,4 +59,14 @@ header {
   min-height: 30px;
   padding: 5px 30px;
 }
+
+table {
+  max-width: 720px;
+}
+
+th, td {
+  text-align: center;
+  border: 1px solid black;
+  padding: 20px;
+}
 /*# sourceMappingURL=style.prefixed.css.map */
