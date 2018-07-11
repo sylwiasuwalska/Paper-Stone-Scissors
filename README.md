@@ -1,1 +1,1 @@
-# Paper-Stone-Scissors
+https://sylwiasuwalska.github.io/Paper-Stone-Scissors/

@@ -11,6 +11,7 @@ var params = {
 	userresult: 0,
 	userround: 0,
 	round: 0,
+	progres: [],
 }
 
 output.innerHTML =
@@ -20,26 +21,13 @@ output.innerHTML =
 
 
 
-// losowanie komputera
-var komputer = function() {
-	var	kompchoice = Math.floor((Math.random() * 3) + 1);
 
-	if (kompchoice == 1) {
-       kompchoice = "stone";
-    } if (kompchoice == 2) {
-       kompchoice = "paper";
-    } if (kompchoice == 3) {
-       kompchoice = "scissors";
-	}
-	return kompchoice;
-} 
 
 // obsluga modali, funkcje
 	//otwieranie modala
 	var showModal = function(score){
 
 		document.querySelector('.overlay').classList.add('show');
-		console.log(score);
 		document.querySelector(score).classList.add('show');
 	};
 
@@ -57,7 +45,6 @@ var komputer = function() {
 	};
 
 	var closeButtons = document.querySelectorAll('.modal .close');
-	console.log(closeButtons);
 	for(var i = 0; i < closeButtons.length; i++){
 		closeButtons[i].addEventListener('click', hideModal);
 	
@@ -81,6 +68,22 @@ var komputer = function() {
 
 
 // gra wlasciwa
+
+// losowanie komputera
+var komputer = function() {
+	var	kompchoice = Math.floor((Math.random() * 3) + 1);
+
+	if (kompchoice == 1) {
+       kompchoice = "stone";
+    } if (kompchoice == 2) {
+       kompchoice = "paper";
+    } if (kompchoice == 3) {
+       kompchoice = "scissors";
+	}
+	return kompchoice;
+} 
+
+
 var button1 = document.getElementById("stone");
 var button2 = document.getElementById("paper");
 var button3 = document.getElementById("scissors");
