@@ -20,7 +20,7 @@
     "w:prefixer": "npm run build:autoprefixer",
     "w:optimilized": "npm-run-all -s w:sass w:prefixer",
     "watch:sassprefixer": "onchange -d 100 sass/style.scss -- npm run w:optimilized",
-    "watch:browsersync": "browser-sync start --server --files *.html **/*.css"
+    "watch:browsersync": "browser-sync start --server --open --files *.html **/*.css"
   },
   "keywords": [],
   "author": "",
