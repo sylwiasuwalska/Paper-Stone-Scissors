@@ -1,6 +1,5 @@
 body {
 	margin: 0;
-	
 }
 
 .container {
@@ -24,13 +23,12 @@ body {
 	height: 100%;
 	background: rgba(0, 0, 0, 0.7);
 }
-	
+
 .show {
-		display: block;
+	display: block;
 }
 
 .modal {
-
 	display: none;
 	background: #fff;
 	width: auto;
@@ -40,34 +38,34 @@ body {
 	transform: translate3d(-50%, -50%, 0);
 }
 
-	
 .close {
-		position: absolute;
-		right: 0;
-		top: 0;
-		padding: 5px;
-		color: #000;
-		text-decoration: none;
+	position: absolute;
+	right: 0;
+	top: 0;
+	padding: 5px;
+	color: #000;
+	text-decoration: none;
 }
 
 header {
-		font-size: 20px;
-		line-height: 30px;
-		min-height: 30px;
-		font-weight: bold;
-		padding: 0 30px;
+	font-size: 20px;
+	line-height: 30px;
+	min-height: 30px;
+	font-weight: bold;
+	padding: 0 30px;
 }
 
 .content {
-		min-height: 30px;
-		padding: 5px 30px;
+	min-height: 30px;
+	padding: 5px 30px;
 }
 
 table {
 	width: 100%;
 }
 
-th, td {
+th,
+td {
 	text-align: center;
 	border: 1px solid black;
 	padding: 0px;

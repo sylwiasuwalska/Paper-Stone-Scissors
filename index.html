@@ -1,65 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Gra</title>
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="css/style.prefixed.css"> </head>
-<body>
-    <div class="container">
-        <h1>Stone - Paper - Scissors</h1>
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Gra</title>
+        <link
+            rel="stylesheet"
+            type="text/css"
+            href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        />
+        <link rel="stylesheet" type="text/css" href="css/style.prefixed.css" />
+    </head>
+    <body>
+        <div class="container">
+            <h1>Stone - Paper - Scissors</h1>
 
-        <div id="result" class="result">
-            <h2>Scores</h2>  
-        </div>
-
-        <div id="newGame">
-            <button id="btnNewGame" class="btn btn-success btn-lg">New Game</button>
-        </div>
-
-        <div id="roundLeft">
-        </div>
-
-        <section class="buttons" id="buttons">
-            <div class="col-md-4 stone"> 
-                <button id="stone" class="btn btn-primary btn-lg player-move" data-move="stone">Stone</button>
+            <div id="result" class="result">
+                <h2>Scores</h2>
             </div>
-            <div class="col-md-4 paper"> 
-                <button  id="paper" class="btn btn-primary btn-lg player-move" data-move="paper">Paper</button>
-            </div>
-            <div class="col-md-4 scissors"> 
-                <button id="scissors" class="btn btn-primary btn-lg player-move" data-move="scissors">Scissors</button>
-            </div>
-        </section>
 
-        <div id="scoresView">
-        </div>
+            <div id="newGame">
+                <button id="btnNewGame" class="btn btn-success btn-lg">
+                    New Game
+                </button>
+            </div>
 
-        <div class="overlay" id="modal-overlay">
-            <div class="modal" id="modal">
-                <a href="#" class="close">x</a>
-                <div class="content">
-                    <div id="modalHeader">
+            <div id="roundLeft"></div>
+
+            <section class="buttons" id="buttons">
+                <div class="col-md-4 stone">
+                    <button
+                        id="stone"
+                        class="btn btn-primary btn-lg player-move"
+                        data-move="stone"
+                    >
+                        Stone
+                    </button>
+                </div>
+                <div class="col-md-4 paper">
+                    <button
+                        id="paper"
+                        class="btn btn-primary btn-lg player-move"
+                        data-move="paper"
+                    >
+                        Paper
+                    </button>
+                </div>
+                <div class="col-md-4 scissors">
+                    <button
+                        id="scissors"
+                        class="btn btn-primary btn-lg player-move"
+                        data-move="scissors"
+                    >
+                        Scissors
+                    </button>
+                </div>
+            </section>
+
+            <div id="scoresView"></div>
+
+            <div class="overlay" id="modal-overlay">
+                <div class="modal" id="modal">
+                    <a href="#" class="close">x</a>
+                    <div class="content">
+                        <div id="modalHeader"></div>
+                        <table id="#tableResult">
+                            <tr>
+                                <th>Round</th>
+                                <th>Player Move</th>
+                                <th>Computer Move</th>
+                                <th>Result</th>
+                            </tr>
+                        </table>
                     </div>
-                    <table id="#tableResult">
-                        <tr>
-                            <th>Round</th>
-                            <th>Player Move</th> 
-                            <th>Computer Move</th>
-                            <th>Result</th>
-                        </tr>
-                    </table>
                 </div>
             </div>
         </div>
-
-        
-
-
-    </div>
-    <script src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
-    <script src='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js'></script>
-    <script src="js/script.js"></script>
-</body>
+        <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/script.js"></script>
+    </body>
 </html>
